@@ -58,13 +58,20 @@ const createGallery = (galleryItems, createItem) => {
 };
 
 const murkup = createGallery(galleryItems, createItem);
-gallery.append(murkup);
+document.querySelector("body").append(murkup);
 
 const selectImg = (event) => {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
+
+  const closeModal = (event) => {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  };
+  gallery.addEventListener("keydown", closeModal);
 
   const openModal = event.target.getAttribute("data-source");
 
@@ -74,7 +81,8 @@ const selectImg = (event) => {
 `);
 
   instance.show();
+
+  closeModal;
 };
 
 gallery.addEventListener("click", selectImg);
-
