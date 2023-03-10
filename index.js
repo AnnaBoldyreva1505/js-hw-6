@@ -268,23 +268,23 @@
 // document.querySelector('body').append(x);
 
 
-import data from './js-hw7/js/01-gallery';
-const { data: initialData } = data;
+// import data from './js-hw7/js/01-gallery';
+// const { data: initialData } = data;
 
-// console.dir(_);
-const inp = document.querySelector('[type="text"]');
-
-
-window.addEventListener('scroll', () => {
-    console.log('Scroll');
-})
+// // console.dir(_);
+// const inp = document.querySelector('[type="text"]');
 
 
-const handler = (event) => {
-    console.log(event.target.value);
-}
+// window.addEventListener('scroll', () => {
+//     console.log('Scroll');
+// })
 
-const delay = 1000;
+
+// const handler = (event) => {
+//     console.log(event.target.value);
+// }
+
+// const delay = 1000;
 
 
 
@@ -293,28 +293,63 @@ const delay = 1000;
 // Hello w
 // Hello world
 
-inp.addEventListener('input', _.debounce(handler, delay));
+// inp.addEventListener('input', _.debounce(handler, delay));
 
-const createItem = (src, title, text) => {
-    return `
-        <li>
-            <img src='https://images.pexels.com/photos/1054018/pexels-photo-1054018.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-             data-src=${src} alt=${title} width='200' class='lazyload'/>
-            <h2>${title}</h2>
-            <p>${text}</p>
-        </li>
-    `
-}
+// const createItem = (src, title, text) => {
+//     return `
+//         <li>
+//             <img src='https://images.pexels.com/photos/1054018/pexels-photo-1054018.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+//              data-src=${src} alt=${title} width='200' class='lazyload'/>
+//             <h2>${title}</h2>
+//             <p>${text}</p>
+//         </li>
+//     `
+// }
 
-const createGallery = (imagesArray, createItemElements) => {
-    const listElem = document.createElement('ul');
-    const result = imagesArray.map(({image, title, text}) => {
-        return createItemElements(image, title, text)
-    }).join('')
-    listElem.insertAdjacentHTML('afterbegin', result)
-    return listElem;
-}
+// const createGallery = (imagesArray, createItemElements) => {
+//     const listElem = document.createElement('ul');
+//     const result = imagesArray.map(({image, title, text}) => {
+//         return createItemElements(image, title, text)
+//     }).join('')
+//     listElem.insertAdjacentHTML('afterbegin', result)
+//     return listElem;
+// }
 
-const x = createGallery(initialData, createItem);
-document.querySelector('body').innerHTML = '';
-document.querySelector('body').append(x);
+// const x = createGallery(initialData, createItem);
+// document.querySelector('body').innerHTML = '';
+// document.querySelector('body').append(x);
+
+
+
+// const body = document.querySelector('body')
+// body.innerHTML = ''
+
+// const int = setInterval(() => {
+//     const dateForClocks = new Date()
+//     const h = dateForClocks.getHours()
+// const m = dateForClocks.getMinutes()
+// const s = dateForClocks.getSeconds() 
+// const markup = `<p>${h}:${m}:${s}</p>`
+// // body.insertAdjacentHTML('afterbegin', markup)
+// body.innerHTML = markup
+
+// }, 1000)
+
+
+
+// роще отдельной функцией сделать:
+// function pad(x) {
+//   return x < 10 ? '0' + x : x;
+// }
+
+// и использовать в вашем коде так:
+// document.getElementById('minute').innerHTML = pad(minute);
+// document.getElementById('second').innerHTML = pad(second);
+// https://momentjs.com/
+
+const now = new Date()
+console.log("now.toUTCString", now.toUTCString())
+console.log("now.toISOString", now.toISOString())
+console.log("now.toLocaleString", now.toLocaleString())
+console.log("now.toTimeString", now.toTimeString())
+console.log("now.toDateString", now.toDateString())
