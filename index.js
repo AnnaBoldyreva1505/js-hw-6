@@ -268,23 +268,23 @@
 // document.querySelector('body').append(x);
 
 
-import data from './js-hw7/js/01-gallery';
-const { data: initialData } = data;
+// import data from './js-hw7/js/01-gallery';
+// const { data: initialData } = data;
 
-// console.dir(_);
-const inp = document.querySelector('[type="text"]');
-
-
-window.addEventListener('scroll', () => {
-    console.log('Scroll');
-})
+// // console.dir(_);
+// const inp = document.querySelector('[type="text"]');
 
 
-const handler = (event) => {
-    console.log(event.target.value);
-}
+// window.addEventListener('scroll', () => {
+//     console.log('Scroll');
+// })
 
-const delay = 1000;
+
+// const handler = (event) => {
+//     console.log(event.target.value);
+// }
+
+// const delay = 1000;
 
 
 
@@ -293,28 +293,193 @@ const delay = 1000;
 // Hello w
 // Hello world
 
-inp.addEventListener('input', _.debounce(handler, delay));
+// inp.addEventListener('input', _.debounce(handler, delay));
 
-const createItem = (src, title, text) => {
-    return `
-        <li>
-            <img src='https://images.pexels.com/photos/1054018/pexels-photo-1054018.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-             data-src=${src} alt=${title} width='200' class='lazyload'/>
-            <h2>${title}</h2>
-            <p>${text}</p>
-        </li>
-    `
+// const createItem = (src, title, text) => {
+//     return `
+//         <li>
+//             <img src='https://images.pexels.com/photos/1054018/pexels-photo-1054018.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+//              data-src=${src} alt=${title} width='200' class='lazyload'/>
+//             <h2>${title}</h2>
+//             <p>${text}</p>
+//         </li>
+//     `
+// }
+
+// const createGallery = (imagesArray, createItemElements) => {
+//     const listElem = document.createElement('ul');
+//     const result = imagesArray.map(({image, title, text}) => {
+//         return createItemElements(image, title, text)
+//     }).join('')
+//     listElem.insertAdjacentHTML('afterbegin', result)
+//     return listElem;
+// }
+
+// const x = createGallery(initialData, createItem);
+// document.querySelector('body').innerHTML = '';
+// document.querySelector('body').append(x);
+
+
+
+// const body = document.querySelector('body')
+// body.innerHTML = ''
+
+// const int = setInterval(() => {
+//     const dateForClocks = new Date()
+//     const h = dateForClocks.getHours()
+// const m = dateForClocks.getMinutes()
+// const s = dateForClocks.getSeconds() 
+// const markup = `<p>${h}:${m}:${s}</p>`
+// // body.insertAdjacentHTML('afterbegin', markup)
+// body.innerHTML = markup
+
+// }, 1000)
+
+
+
+// роще отдельной функцией сделать:
+// function pad(x) {
+//   return x < 10 ? '0' + x : x;
+// }
+
+// и использовать в вашем коде так:
+// document.getElementById('minute').innerHTML = pad(minute);
+// document.getElementById('second').innerHTML = pad(second);
+// https://momentjs.com/
+
+// const now = new Date()
+// console.log("now.toUTCString", now.toUTCString())
+// console.log("now.toISOString", now.toISOString())
+// console.log("now.toLocaleString", now.toLocaleString())
+// console.log("now.toTimeString", now.toTimeString())
+// console.log("now.toDateString", now.toDateString())
+
+
+//  ======  ПРОМИСЫ  ====
+// промисы - это класс, поэтому вызывается при помощи  New. Вызывается под капотом конструктор, который создает экземпляр класса, а экземпляр класса это объект
+
+console.dir(Promise);
+
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        let number = 2;
+
+        if (number % 2 === 0) {
+            resolve({number, description: 'it`s the odd number'})
+        } else {
+            reject(`${number} is not odd!!!`)
+        }
+    }, 1000)
+});
+
+// console.log('Exemplar of promise:', promise); // pending
+
+promise.then((result) => {
+            // console.log('Result:', result);
+            // console.log('Result:', result.number);
+            return result.number
+        }).then((value) => {
+            // console.log('VALUE:', value);
+            value = value + ''
+            return value
+        }).then((res) => { 
+            // console.log('res:', res); // fulfilled
+        }).catch((error) => {
+            // console.log('Error:', error);// rejected
+        }).finally(() => {
+            // console.log('Thank you for your request!')
+        })
+
+//  
+
+const myFunc = (valueForChecking, successCheck, errorCheck) => {
+    setTimeout(() => {
+        if(typeof valueForChecking === 'string'){
+            successCheck()
+        } else {
+            errorCheck()
+        }
+    }, 0)
 }
 
-const createGallery = (imagesArray, createItemElements) => {
-    const listElem = document.createElement('ul');
-    const result = imagesArray.map(({image, title, text}) => {
-        return createItemElements(image, title, text)
-    }).join('')
-    listElem.insertAdjacentHTML('afterbegin', result)
-    return listElem;
+
+const promissedFunc = (valueForChecking, delay) => {
+
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            if (typeof valueForChecking === 'string') {
+                res(`${valueForChecking} - success!`)
+            } else {
+                rej(`${valueForChecking} is not string`)
+            }
+        }, delay)
+    })
 }
 
-const x = createGallery(initialData, createItem);
-document.querySelector('body').innerHTML = '';
-document.querySelector('body').append(x);
+// exemplar of Class == object
+
+const resultat1 = promissedFunc("1", 5000)
+
+resultat1.then((data) => {
+console.log(data)
+}).catch((error) => {
+console.log(error)
+})
+
+const resultat2 = promissedFunc(0, 0)
+
+resultat2.then((data) => {
+    // console.log('Data:', data);
+    return data
+}).catch((error) => {
+    // console.log('Error:', error);
+    return error
+})
+
+const resultat3 = promissedFunc('Javascript', 1000)
+
+resultat3.then((data) => {
+    // console.log('Data:', data);
+    return data
+}).catch((error) => {
+    // console.log('Error:', error);
+    return error
+})
+//достанет только то, что все успешно и даст результат, если случился фейл вернет ошибку
+const allPromises = Promise.all([resultat1, resultat2, resultat3]);
+// console.log('allPromises:', allPromises);
+
+// allPromises.then(res => {
+//     console.log('allPromises res:', res);
+// }).catch((error) => {
+//     console.log('allPromises error:', error);
+// })
+// Передаст самые первые данные, по заданым параметрам
+const racedPromises = Promise.race([resultat1, resultat2, resultat3])
+console.log('racedPromises:', racedPromises);
+
+racedPromises.then((result) => {
+    console.log('racedPromises result:', result);
+}).catch((err) => {
+    console.log('racedPromises err:', err);
+})
+
+let nickname = 'ku-ku';
+let email = 'hhh@yahoo.com'
+
+const resolvedPromises = Promise.resolve(nickname || email);
+// console.log('resolvedPromises:', resolvedPromises);
+
+resolvedPromises.then((result) => {
+    console.log('resolvedPromises result:', result);
+})
+
+const rejectedPromises = Promise.reject('World!');
+console.log('rejectedPromises:', rejectedPromises);
+
+rejectedPromises.then(data => console.log('Data: ', data)).catch(err=> console.log('rejectedPromises:', err))
+
+
+
+
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- <button type="button" id="stop">stop</button> -->
+    <div class="container">
+
+  <div class="ClockHolder" >
+
+    <div class="WeekDays">
+        <span>sat</span>
+        <span>sun</span>
+        <span>mon</span>
+        <span>tue</span>
+        <span>wed</span>
+        <span>thu</span>
+        <span>fri</span>
+    </div>
+
+    <div class="TimeHolder">
+
+      <div class="TimeOptions">
+          <button class="fas fa-clock" data-info="my data attribut" data-title="Time">
+              <img src="./icons/clock.svg" alt="Time" width="24">
+          </button>
+           <button class="fas fa-stopwatch" data-title="StopWatch">
+              <img src="./icons/timer.svg" alt="StopWatch" width="24">
+          </button>
+           <button class="far fa-clock" data-title="CountDown">
+              <img src="./icons/counter.svg" alt="CountDown" width="24">
+          </button>
+      </div>
+
+      <div class="Numbers">
+
+        <div class="NumberHolder H1">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+        <div class="NumberHolder H2">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+        <span>:</span>
+
+        <div class="NumberHolder M1">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+        <div class="NumberHolder M2">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+        <span>:</span>
+
+        <div class="NumberHolder S1">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+        <div class="NumberHolder S2">
+          <span class="d1"></span>
+          <span class="d2"></span>
+          <span class="d3"></span>
+          <span class="d4"></span>
+          <span class="d5"></span>
+          <span class="d6"></span>
+          <span class="d7"></span>
+        </div>
+
+      </div>
+
+      <div class="AlarmInput">
+        <input type="number" placeholder="Enter Seconds">
+      </div>
+
+      <div class="TimeFormat">
+
+        <div class="Type">
+          <span id="12hr">12hr</span>
+          <span id="24hr" class="active">24hr</span>
+        </div>
+
+        <div class="Formats">
+          <span>am</span>
+          <span>pm</span>
+        </div>
+
+        <div class="control">
+            <button class="Start active" id="start">
+              <img src="./icons/start.svg" alt="start" class="fas fa-play" width="24">
+            </button>
+            <button class="Pause" id="pause">
+              <img src="./icons/pause.svg" alt="pause" class="fas fa-pause" width="24">
+            </button>
+            <button class="Stop active" id="stop">
+              <img src="./icons/stop.svg" alt="stop" class="fas fa-stop" width="24">
+            </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+    <!-- <script src="./index.js" type="module"></script> -->
+    <script src="./clock.js" type="module"></script>
+
+</body>
+</html>
