@@ -81,17 +81,16 @@
 // //     `
 // // }
 
-
 // // const createGallery = (imagesArray, createItemElements) => {
 // //     // create ul
 // //     const listElem = document.createElement('ul');
-    
+
 // //     // map imagesArray & create items
 // //     const result = imagesArray.map(({image, title, text}) => {
 // //         return createItemElements(image, title, text)
 // //     }).join('')
-    
-// //     // insert items into ul 
+
+// //     // insert items into ul
 // //     listElem.insertAdjacentHTML('afterbegin', result)
 
 // //     return listElem;
@@ -100,7 +99,6 @@
 // // const x = createGallery(initialData, createImageItem);
 // // document.querySelector('body').innerHTML = '';
 // // // document.querySelector('body').append(x);
-
 
 // // // AS ELEMENTS
 // // const createImgItem = (imagesData) => {
@@ -137,7 +135,6 @@
 // //         listElem.insertAdjacentHTML('afterbegin', '<h1>ERROR</h1>')
 // //     }
 
-
 // //     listElem.addEventListener('click', handler)
 
 // //     return listElem;
@@ -157,16 +154,14 @@
 // //     }
 // // }
 
-
-
 // // cdn contact delivery network - сеть серверов на которых хранятся библиотеки cdnjs - официальный сайт
-// // Как выбирать библиотеки на npm: 
+// // Как выбирать библиотеки на npm:
 // // - когда была последняя публикация
 // // - сколько скачиваний за неделю
 // // - версии
 // // - размер (чем меньше тем лучше)
 
-// // Так можно проверить подключилась ли библиотека lodash, 
+// // Так можно проверить подключилась ли библиотека lodash,
 // // console.log(_);
 // // Посмотреть доступные методы
 // // console.dir(_);
@@ -210,15 +205,11 @@
 // // vanilla-lazyload https://www.andreaverlicchi.eu/vanilla-lazyload/
 // // lozard https://apoorv.pro/lozad.js/
 
-
-
-
 // const input = document.querySelector('[type="text"]')
 
 // window.addEventListener('scroll', () => {
 //     console.log('object');
 // })
-
 
 // const handler = e => {
 //     console.log(e.target.value);
@@ -226,21 +217,15 @@
 
 // const delay = 1000
 
-
-
 // //throttle например можно использовать для валидации данных, к примеру юзер вводит пароль с меньшим кол-вом цифр мы ему подсвечиваем, что нужно больше, как ввел достаточно - можно покрасить зеленым/убрать ограничения
 // // input.addEventListener('input', _.throttle(handler, delay))
 // // H - при вводе отрабатывает первый раз
 // // Hello w - сколько влезло  в 1 сек
 // // Hello world - после того как допечатали
 
-
 // // debounce - например получить данные и отправить запрос на бэкенд
 // input.addEventListener('input', _.debounce(handler, delay))
 // // отсчитывает 1000мс после паузы
-
-
-
 
 // // делаем ленивую загрузку
 // const createItem = (src, title, text) => {
@@ -267,26 +252,21 @@
 // document.querySelector('body').innerHTML = '';
 // document.querySelector('body').append(x);
 
-
 // import data from './js-hw7/js/01-gallery';
 // const { data: initialData } = data;
 
 // // console.dir(_);
 // const inp = document.querySelector('[type="text"]');
 
-
 // window.addEventListener('scroll', () => {
 //     console.log('Scroll');
 // })
-
 
 // const handler = (event) => {
 //     console.log(event.target.value);
 // }
 
 // const delay = 1000;
-
-
 
 // inp.addEventListener('input', _.throttle(handler, delay));
 // H
@@ -319,8 +299,6 @@
 // document.querySelector('body').innerHTML = '';
 // document.querySelector('body').append(x);
 
-
-
 // const body = document.querySelector('body')
 // body.innerHTML = ''
 
@@ -328,14 +306,12 @@
 //     const dateForClocks = new Date()
 //     const h = dateForClocks.getHours()
 // const m = dateForClocks.getMinutes()
-// const s = dateForClocks.getSeconds() 
+// const s = dateForClocks.getSeconds()
 // const markup = `<p>${h}:${m}:${s}</p>`
 // // body.insertAdjacentHTML('afterbegin', markup)
 // body.innerHTML = markup
 
 // }, 1000)
-
-
 
 // роще отдельной функцией сделать:
 // function pad(x) {
@@ -354,132 +330,192 @@
 // console.log("now.toTimeString", now.toTimeString())
 // console.log("now.toDateString", now.toDateString())
 
-
 //  ======  ПРОМИСЫ  ====
 // промисы - это класс, поэтому вызывается при помощи  New. Вызывается под капотом конструктор, который создает экземпляр класса, а экземпляр класса это объект
 
-console.dir(Promise);
+// console.dir(Promise);
 
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        let number = 2;
+// const promise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         let number = 2;
 
-        if (number % 2 === 0) {
-            resolve({number, description: 'it`s the odd number'})
-        } else {
-            reject(`${number} is not odd!!!`)
-        }
-    }, 1000)
+//         if (number % 2 === 0) {
+//             resolve({number, description: 'it`s the odd number'})
+//         } else {
+//             reject(`${number} is not odd!!!`)
+//         }
+//     }, 1000)
+// });
+
+// // console.log('Exemplar of promise:', promise); // pending
+
+// promise.then((result) => {
+//             // console.log('Result:', result);
+//             // console.log('Result:', result.number);
+//             return result.number
+//         }).then((value) => {
+//             // console.log('VALUE:', value);
+//             value = value + ''
+//             return value
+//         }).then((res) => {
+//             // console.log('res:', res); // fulfilled
+//         }).catch((error) => {
+//             // console.log('Error:', error);// rejected
+//         }).finally(() => {
+//             // console.log('Thank you for your request!')
+//         })
+
+// //
+
+// const myFunc = (valueForChecking, successCheck, errorCheck) => {
+//     setTimeout(() => {
+//         if(typeof valueForChecking === 'string'){
+//             successCheck()
+//         } else {
+//             errorCheck()
+//         }
+//     }, 0)
+// }
+
+// const promissedFunc = (valueForChecking, delay) => {
+
+//     return new Promise((res, rej) => {
+//         setTimeout(() => {
+//             if (typeof valueForChecking === 'string') {
+//                 res(`${valueForChecking} - success!`)
+//             } else {
+//                 rej(`${valueForChecking} is not string`)
+//             }
+//         }, delay)
+//     })
+// }
+
+// // exemplar of Class == object
+
+// const resultat1 = promissedFunc("1", 5000)
+
+// resultat1.then((data) => {
+// console.log(data)
+// }).catch((error) => {
+// console.log(error)
+// })
+
+// const resultat2 = promissedFunc(0, 0)
+
+// resultat2.then((data) => {
+//     // console.log('Data:', data);
+//     return data
+// }).catch((error) => {
+//     // console.log('Error:', error);
+//     return error
+// })
+
+// const resultat3 = promissedFunc('Javascript', 1000)
+
+// resultat3.then((data) => {
+//     // console.log('Data:', data);
+//     return data
+// }).catch((error) => {
+//     // console.log('Error:', error);
+//     return error
+// })
+// //достанет только то, что все успешно и даст результат, если случился фейл вернет ошибку
+// const allPromises = Promise.all([resultat1, resultat2, resultat3]);
+// // console.log('allPromises:', allPromises);
+
+// // allPromises.then(res => {
+// //     console.log('allPromises res:', res);
+// // }).catch((error) => {
+// //     console.log('allPromises error:', error);
+// // })
+// // Передаст самые первые данные, по заданым параметрам
+// const racedPromises = Promise.race([resultat1, resultat2, resultat3])
+// console.log('racedPromises:', racedPromises);
+
+// racedPromises.then((result) => {
+//     console.log('racedPromises result:', result);
+// }).catch((err) => {
+//     console.log('racedPromises err:', err);
+// })
+
+// let nickname = 'ku-ku';
+// let email = 'hhh@yahoo.com'
+
+// const resolvedPromises = Promise.resolve(nickname || email);
+// // console.log('resolvedPromises:', resolvedPromises);
+
+// resolvedPromises.then((result) => {
+//     console.log('resolvedPromises result:', result);
+// })
+
+// const rejectedPromises = Promise.reject('World!');
+// console.log('rejectedPromises:', rejectedPromises);
+
+// rejectedPromises.then(data => console.log('Data: ', data)).catch(err=> console.log('rejectedPromises:', err))
+
+const body = document.querySelector("body");
+body.innerHTML = "";
+const input = document.createElement("input");
+input.placeholder = "Enter Value";
+body.insertAdjacentElement("afterbegin", input);
+
+//
+BASE_URL = "https://api.pexels.com/v1/search";
+// API_KEY Pexels
+const API_KEY = "seQhbqZa3ClF2vIuMKwcl7lkfLBA4EXQOVQnOGUB7MqppeUlGPja3Tc5";
+
+const options = {
+  // method: "GET", - задавать гет не обязательно, он по умолчанию
+  headers: {
+    Authorization: API_KEY,
+  },
+};
+
+input.addEventListener("change", (e) => {
+  const queryValue = e.target.value.trim();
+
+  if (!queryValue) {
+    alert("Введи запрос");
+  }
+
+  let queryParams = `?query=${queryValue}`;
+  const url = `${BASE_URL}${queryParams}`;
+  fetch(url, options)
+    .then((response) => {
+      console.log(response);
+
+      if (response.status === 400) {
+        throw new Error("Bad requests");
+      }
+      if (response.status === 401) {
+        throw new Error("CHECK YOUR KEY");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data.photos;
+    })
+    .then((photos) => {
+      console.log(photos);
+      const result = photos
+        .map((image) => {
+          return createItem(image.src.tiny, image.alt);
+        })
+        .join("");
+      console.log(result);
+
+      input.insertAdjacentHTML("afterend", result);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+        e.target.value = "";
+      });
 });
 
-// console.log('Exemplar of promise:', promise); // pending
-
-promise.then((result) => {
-            // console.log('Result:', result);
-            // console.log('Result:', result.number);
-            return result.number
-        }).then((value) => {
-            // console.log('VALUE:', value);
-            value = value + ''
-            return value
-        }).then((res) => { 
-            // console.log('res:', res); // fulfilled
-        }).catch((error) => {
-            // console.log('Error:', error);// rejected
-        }).finally(() => {
-            // console.log('Thank you for your request!')
-        })
-
-//  
-
-const myFunc = (valueForChecking, successCheck, errorCheck) => {
-    setTimeout(() => {
-        if(typeof valueForChecking === 'string'){
-            successCheck()
-        } else {
-            errorCheck()
-        }
-    }, 0)
+function createItem(sourse, description) {
+  return `<li>
+    <img src=${sourse} alt=${description}>
+    </li>`;
 }
-
-
-const promissedFunc = (valueForChecking, delay) => {
-
-    return new Promise((res, rej) => {
-        setTimeout(() => {
-            if (typeof valueForChecking === 'string') {
-                res(`${valueForChecking} - success!`)
-            } else {
-                rej(`${valueForChecking} is not string`)
-            }
-        }, delay)
-    })
-}
-
-// exemplar of Class == object
-
-const resultat1 = promissedFunc("1", 5000)
-
-resultat1.then((data) => {
-console.log(data)
-}).catch((error) => {
-console.log(error)
-})
-
-const resultat2 = promissedFunc(0, 0)
-
-resultat2.then((data) => {
-    // console.log('Data:', data);
-    return data
-}).catch((error) => {
-    // console.log('Error:', error);
-    return error
-})
-
-const resultat3 = promissedFunc('Javascript', 1000)
-
-resultat3.then((data) => {
-    // console.log('Data:', data);
-    return data
-}).catch((error) => {
-    // console.log('Error:', error);
-    return error
-})
-//достанет только то, что все успешно и даст результат, если случился фейл вернет ошибку
-const allPromises = Promise.all([resultat1, resultat2, resultat3]);
-// console.log('allPromises:', allPromises);
-
-// allPromises.then(res => {
-//     console.log('allPromises res:', res);
-// }).catch((error) => {
-//     console.log('allPromises error:', error);
-// })
-// Передаст самые первые данные, по заданым параметрам
-const racedPromises = Promise.race([resultat1, resultat2, resultat3])
-console.log('racedPromises:', racedPromises);
-
-racedPromises.then((result) => {
-    console.log('racedPromises result:', result);
-}).catch((err) => {
-    console.log('racedPromises err:', err);
-})
-
-let nickname = 'ku-ku';
-let email = 'hhh@yahoo.com'
-
-const resolvedPromises = Promise.resolve(nickname || email);
-// console.log('resolvedPromises:', resolvedPromises);
-
-resolvedPromises.then((result) => {
-    console.log('resolvedPromises result:', result);
-})
-
-const rejectedPromises = Promise.reject('World!');
-console.log('rejectedPromises:', rejectedPromises);
-
-rejectedPromises.then(data => console.log('Data: ', data)).catch(err=> console.log('rejectedPromises:', err))
-
-
-
-
-
