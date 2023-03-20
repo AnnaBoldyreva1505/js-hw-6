@@ -453,12 +453,89 @@
 
 // rejectedPromises.then(data => console.log('Data: ', data)).catch(err=> console.log('rejectedPromises:', err))
 
+// const body = document.querySelector("body");
+// body.innerHTML = "";
+// const input = document.createElement("input");
+// input.placeholder = "Enter Value";
+// body.insertAdjacentElement("afterbegin", input);
+
+// //
+// BASE_URL = "https://api.pexels.com/v1/search";
+// // API_KEY Pexels
+// const API_KEY = "seQhbqZa3ClF2vIuMKwcl7lkfLBA4EXQOVQnOGUB7MqppeUlGPja3Tc5";
+
+// const options = {
+//   // method: "GET", - задавать гет не обязательно, он по умолчанию
+//   headers: {
+//     Authorization: API_KEY,
+//   },
+// };
+
+// input.addEventListener("change", (e) => {
+//   const queryValue = e.target.value.trim();
+
+//   if (!queryValue) {
+//     alert("Введи запрос");
+//   }
+
+//   let queryParams = `?query=${queryValue}`;
+//   const url = `${BASE_URL}${queryParams}`;
+//   fetch(url, options)
+//     .then((response) => {
+//       console.log(response);
+
+//       if (response.status === 400) {
+//         throw new Error("Bad requests");
+//       }
+//       if (response.status === 401) {
+//         throw new Error("CHECK YOUR KEY");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       return data.photos;
+//     })
+//     .then((photos) => {
+//       console.log(photos);
+//       const result = photos
+//         .map((image) => {
+//           return createItem(image.src.tiny, image.alt);
+//         })
+//         .join("");
+//       console.log(result);
+
+//       input.insertAdjacentHTML("afterend", result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+//     .finally(() => {
+//         e.target.value = "";
+//       });
+// });
+
+// function createItem(sourse, description) {
+//   return `<li>
+//     <img src=${sourse} alt=${description}>
+//     </li>`;
+// }
+
+// ПАГИНАЦИЯ
+
 const body = document.querySelector("body");
 body.innerHTML = "";
 const input = document.createElement("input");
 input.placeholder = "Enter Value";
 body.insertAdjacentElement("afterbegin", input);
 
+const resultsList = document.createElement("ul"); 
+resultsList.classList.add('resultsList')
+input.insertAdjacentElement("afterend", resultsList)
+
+
+const loadMoreBtn = document.createElement("button");
+loadMoreBtn.type = "button";
+loadMoreBtn.textContent = "load more...";
 //
 BASE_URL = "https://api.pexels.com/v1/search";
 // API_KEY Pexels
@@ -471,19 +548,13 @@ const options = {
   },
 };
 
-input.addEventListener("change", (e) => {
-  const queryValue = e.target.value.trim();
+let queryValue, page;
 
-  if (!queryValue) {
-    alert("Введи запрос");
-  }
-
-  let queryParams = `?query=${queryValue}`;
+function getFetch(value, p) {
+  let queryParams = `?query=${value}&per_page=1&page=${p}}`;
   const url = `${BASE_URL}${queryParams}`;
-  fetch(url, options)
+  return fetch(url, options)
     .then((response) => {
-      console.log(response);
-
       if (response.status === 400) {
         throw new Error("Bad requests");
       }
@@ -493,29 +564,43 @@ input.addEventListener("change", (e) => {
       return response.json();
     })
     .then((data) => {
-      return data.photos;
-    })
-    .then((photos) => {
-      console.log(photos);
-      const result = photos
-        .map((image) => {
-          return createItem(image.src.tiny, image.alt);
-        })
-        .join("");
-      console.log(result);
-
-      input.insertAdjacentHTML("afterend", result);
+      page = data.page + 1;
+      getResults(data.photos)
+      // return data.photos;
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-        e.target.value = "";
-      });
+      input.value = "";
+    });
+}
+
+input.addEventListener("change", (e) => {
+  const inputValue = e.target.value.trim();
+
+  if (!inputValue) {
+    alert("Введи запрос");
+  }
+  queryValue = inputValue;
+
+  getFetch(queryValue, 1);
+});
+
+loadMoreBtn.addEventListener("click", (e) => {
+  getFetch(queryValue, page);
 });
 
 function createItem(sourse, description) {
   return `<li>
     <img src=${sourse} alt=${description}>
     </li>`;
+}
+
+function getResults(photos) {
+  const result = photos
+    .map(image => createItem(image.src.tiny, image.alt))
+    .join("");
+  resultsList.insertAdjacentHTML("beforeend", result);
+  body.insertAdjacentElement("beforeend", loadMoreBtn);
 }

@@ -1,0 +1,12 @@
+body {
+width: 1000px;
+}
+li{
+    text-decoration: none;
+    list-style: none;
+}
+.resultsList{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly; 
+}
