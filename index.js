@@ -528,10 +528,9 @@
 // input.placeholder = "Enter Value";
 // body.insertAdjacentElement("afterbegin", input);
 
-// const resultsList = document.createElement("ul"); 
+// const resultsList = document.createElement("ul");
 // resultsList.classList.add('resultsList')
 // input.insertAdjacentElement("afterend", resultsList)
-
 
 // const loadMoreBtn = document.createElement("button");
 // loadMoreBtn.type = "button";
@@ -605,7 +604,157 @@
 //   body.insertAdjacentElement("beforeend", loadMoreBtn);
 // }
 
-
-
-
 // ASYNC AWAIT
+const body = document.querySelector("body");
+body.innerHTML = "";
+
+const BASE_URL = "http://localhost:3000";
+const ENDPOINT = {
+  students: "/students",
+};
+
+// CRUD
+// Create: POST
+// Read: GET
+// Update: PUT & PATCH
+// Delete: DELETE
+
+const form = document.createElement("form");
+form.classList.add("newStudentFrom");
+const nameInput = document.createElement("input");
+nameInput.placeholder = "name";
+nameInput.id = "name";
+
+const groupInput = document.createElement("input");
+groupInput.placeholder = "group";
+groupInput.id = "group";
+
+const postButton = document.createElement("button");
+postButton.type = "submit";
+postButton.textContent = "Post students";
+
+form.append(nameInput, groupInput, postButton);
+
+body.insertAdjacentElement("afterbegin", form);
+
+// const newStudent = {
+//   name: "Anna",
+//   age: 34,
+// };
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = e.target.elements.name.value;
+  const group = e.target.elements.group.value;
+  console.log(name);
+  console.log(group);
+  if (!name || !group) return; //возврат или alert
+
+//   const obj = { name, group };
+//   console.log(obj);
+  const url = BASE_URL + ENDPOINT.students;
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ name, group }),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  };
+  fetch(url, options)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+});
+
+const getButton = document.createElement("button");
+getButton.type = "button";
+getButton.textContent = "Get students";
+form.after(getButton);
+
+const resultsList = document.createElement("ul");
+
+getButton.addEventListener("click", () => {
+  const url = BASE_URL + ENDPOINT.students;
+  fetch(url)
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.length > 0) {
+        const elem = data.map((el) => {
+          const elName = el.name;
+          const elGroup = el.group;
+          const elId = el.id;
+          const item = document.createElement("li");
+
+          item.setAttribute("data-id", elId);
+          const stName = document.createElement("h3");
+          stName.textContent = elName;
+          const stGroup = document.createElement("p");
+          stGroup.textContent = elGroup;
+          const removeBtn = document.createElement("button");
+          removeBtn.type = "button";
+          removeBtn.textContent = "x";
+          removeBtn.classList.add('removeItem')
+          item.append(stName, stGroup, removeBtn);
+          return item;
+        });
+        resultsList.append(...elem);
+        getButton.after(resultsList);
+      }
+    });
+});
+
+resultsList.addEventListener("click", (e) => {
+  console.log(e.target.nodeName);
+  if (e.target.nodeName === "LI") {
+    const studentId = e.target.dataset.id;
+    const url = BASE_URL + ENDPOINT.students + `/${studentId}`;
+    const name = "default";
+    const putOptions = {
+      method: "PUT",
+      body: JSON.stringify({ name }),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    };
+    //   fetch(url, putOptions)
+    //   .then((r) => {
+    //     console.log(r);
+    //   })
+
+    const patchOptions = {
+      method: "PATCH",
+      body: JSON.stringify({ name }),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    };
+    //   fetch(url, patchOptions)
+    //   .then((r) => {
+    //     console.log(r);
+    //   })
+    const patchOptionsNF = {
+      method: "PATCH",
+      body: JSON.stringify({ age: 35 }),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    };
+    fetch(url, patchOptionsNF).then((r) => {
+      console.log(r);
+    });
+  }
+
+
+  if (e.target.classList.contains('removeItem')){
+    const id = e.target.parentElement.dataset.id;
+    const url = BASE_URL + ENDPOINT.students + `/${id}`;
+    fetch(url, {method: 'DELETE'});
+}
+
+});

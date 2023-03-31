@@ -1,12 +1,50 @@
-body {
-width: 1000px;
+.primary-btn {
+    border-radius: 4px;
+    background-color: blueviolet;
+    color: black;
+    padding: 10px;
+    margin: auto;
 }
-li{
-    text-decoration: none;
-    list-style: none;
+
+input {
+    outline: none;
 }
+
+.userDataForm {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.userDataForm input {
+    margin-bottom: 10px;
+}
+
+.sendBtn {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+}
+
 .resultsList{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-evenly; 
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.newStudentFrom {
+    padding: 10px;
+    border: 1px solid;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.newStudentFrom input {
+    margin-bottom: 10px;
 }

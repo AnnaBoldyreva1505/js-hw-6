@@ -1,4 +1,9 @@
 {
-    "students": []
-    
-  }
+  "students": [
+    {
+      "name": "Anna",
+      "group": "c ",
+      "id": 6
+    }
+  ]
+}
