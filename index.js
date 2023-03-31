@@ -522,85 +522,90 @@
 
 // ПАГИНАЦИЯ
 
-const body = document.querySelector("body");
-body.innerHTML = "";
-const input = document.createElement("input");
-input.placeholder = "Enter Value";
-body.insertAdjacentElement("afterbegin", input);
+// const body = document.querySelector("body");
+// body.innerHTML = "";
+// const input = document.createElement("input");
+// input.placeholder = "Enter Value";
+// body.insertAdjacentElement("afterbegin", input);
 
-const resultsList = document.createElement("ul"); 
-resultsList.classList.add('resultsList')
-input.insertAdjacentElement("afterend", resultsList)
+// const resultsList = document.createElement("ul"); 
+// resultsList.classList.add('resultsList')
+// input.insertAdjacentElement("afterend", resultsList)
 
 
-const loadMoreBtn = document.createElement("button");
-loadMoreBtn.type = "button";
-loadMoreBtn.textContent = "load more...";
-//
-BASE_URL = "https://api.pexels.com/v1/search";
-// API_KEY Pexels
-const API_KEY = "seQhbqZa3ClF2vIuMKwcl7lkfLBA4EXQOVQnOGUB7MqppeUlGPja3Tc5";
+// const loadMoreBtn = document.createElement("button");
+// loadMoreBtn.type = "button";
+// loadMoreBtn.textContent = "load more...";
+// //
+// BASE_URL = "https://api.pexels.com/v1/search";
+// // API_KEY Pexels
+// const API_KEY = "seQhbqZa3ClF2vIuMKwcl7lkfLBA4EXQOVQnOGUB7MqppeUlGPja3Tc5";
 
-const options = {
-  // method: "GET", - задавать гет не обязательно, он по умолчанию
-  headers: {
-    Authorization: API_KEY,
-  },
-};
+// const options = {
+//   // method: "GET", - задавать гет не обязательно, он по умолчанию
+//   headers: {
+//     Authorization: API_KEY,
+//   },
+// };
 
-let queryValue, page;
+// let queryValue, page;
 
-function getFetch(value, p) {
-  let queryParams = `?query=${value}&per_page=1&page=${p}}`;
-  const url = `${BASE_URL}${queryParams}`;
-  return fetch(url, options)
-    .then((response) => {
-      if (response.status === 400) {
-        throw new Error("Bad requests");
-      }
-      if (response.status === 401) {
-        throw new Error("CHECK YOUR KEY");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      page = data.page + 1;
-      getResults(data.photos)
-      // return data.photos;
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      input.value = "";
-    });
-}
+// function getFetch(value, p) {
+//   let queryParams = `?query=${value}&per_page=1&page=${p}}`;
+//   const url = `${BASE_URL}${queryParams}`;
+//   return fetch(url, options)
+//     .then((response) => {
+//       if (response.status === 400) {
+//         throw new Error("Bad requests");
+//       }
+//       if (response.status === 401) {
+//         throw new Error("CHECK YOUR KEY");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       page = data.page + 1;
+//       getResults(data.photos)
+//       // return data.photos;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+//     .finally(() => {
+//       input.value = "";
+//     });
+// }
 
-input.addEventListener("change", (e) => {
-  const inputValue = e.target.value.trim();
+// input.addEventListener("change", (e) => {
+//   const inputValue = e.target.value.trim();
 
-  if (!inputValue) {
-    alert("Введи запрос");
-  }
-  queryValue = inputValue;
+//   if (!inputValue) {
+//     alert("Введи запрос");
+//   }
+//   queryValue = inputValue;
 
-  getFetch(queryValue, 1);
-});
+//   getFetch(queryValue, 1);
+// });
 
-loadMoreBtn.addEventListener("click", (e) => {
-  getFetch(queryValue, page);
-});
+// loadMoreBtn.addEventListener("click", (e) => {
+//   getFetch(queryValue, page);
+// });
 
-function createItem(sourse, description) {
-  return `<li>
-    <img src=${sourse} alt=${description}>
-    </li>`;
-}
+// function createItem(sourse, description) {
+//   return `<li>
+//     <img src=${sourse} alt=${description}>
+//     </li>`;
+// }
 
-function getResults(photos) {
-  const result = photos
-    .map(image => createItem(image.src.tiny, image.alt))
-    .join("");
-  resultsList.insertAdjacentHTML("beforeend", result);
-  body.insertAdjacentElement("beforeend", loadMoreBtn);
-}
+// function getResults(photos) {
+//   const result = photos
+//     .map(image => createItem(image.src.tiny, image.alt))
+//     .join("");
+//   resultsList.insertAdjacentHTML("beforeend", result);
+//   body.insertAdjacentElement("beforeend", loadMoreBtn);
+// }
+
+
+
+
+// ASYNC AWAIT
